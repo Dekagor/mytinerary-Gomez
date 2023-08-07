@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
 
 #root {
@@ -39,7 +40,8 @@ nav {
 }
 
 
-main {
+div .onetex {
+background-color: aquamarine;
 }
 
 .row {
