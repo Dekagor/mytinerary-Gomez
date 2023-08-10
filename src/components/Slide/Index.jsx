@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Carrousel from '../Carrousel/Index';
-import { data } from 'autoprefixer';
+
 
 
 
@@ -25,6 +25,13 @@ let handlerUp = () => {
         console.log(step);
     }
 }
+
+    
+
+useEffect(()=>{
+    console.log("Slide")
+}, [step])
+
 
 
   return (
