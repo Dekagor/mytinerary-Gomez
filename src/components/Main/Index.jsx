@@ -1,6 +1,6 @@
 import React from 'react';
 import Article from '../Article/Index';
-import Carrousel from '../Carrousel/Index';
+import Slide from '../Slide/Index';
 
 function Main() {
   let data = [
@@ -22,7 +22,9 @@ function Main() {
 
         <section>
 
-        <Carrousel />
+    
+          <Slide />
+      
 
         </section>
 

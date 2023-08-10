@@ -1,4 +1,9 @@
 import React, { useState } from 'react'
+import Carrousel from '../Carrousel/Index';
+import { data } from 'autoprefixer';
+
+
+
 
 function Slide() {
 
@@ -6,14 +11,18 @@ function Slide() {
 let [step, setStep] = useState(1)
 
 let handlerBack = () => {
+    console.log("back");
     if (step != 1) {
         setStep (step - 1)
+        console.log(step);
     }
 }
 
 let handlerUp = () => {
+    console.log("right");
     if (step != 3) {
         setStep (step + 1)
+        console.log(step);
     }
 }
 
@@ -21,20 +30,13 @@ let handlerUp = () => {
   return (
     <>
         <div>
-            {(step == 1 || step == 2 || step == 3) ?
-                <>
-                    { step == 0 && step <= 3 && <>{data.map((each, key)=><Snapshot key={key} photo={each.photo} id={each.id}/>)}</> }
-                    { step == 4 && step <= 7 && <>{data.map((each, key)=><Snapshot key={key} photo={each.photo} id={each.id}/>)}</> }
-                    { step == 8 && step <= 11 && <>{data.map((each, key)=><Snapshot key={key} photo={each.photo} id={each.id}/>)}</> }
-                </>
-                :
-                <>
-                    <p>Fin</p>
-                </>
-            }
+        <Carrousel />
         </div>
-        <button type='button' className='justify-self-center bg-gray-400 p-1 rounded' onClick={() => handlerBack ()}>Previous</button>
-        <button type='button' className='justify-self-center bg-gray-400 p-1 rounded' onClick={() => handlerUp ()}>Next</button>
+
+        <div className="col-span-3 justify-self-center p-3 m-3">
+            <button type='button' className='justify-self-center bg-gray-400 p-1 rounded' onClick={() => handlerBack ()}>Previous</button>
+            <button type='button' className='justify-self-center bg-gray-400 p-1 rounded' onClick={() => handlerUp ()}>Next</button>
+        </div>
     </>
   )
 }
