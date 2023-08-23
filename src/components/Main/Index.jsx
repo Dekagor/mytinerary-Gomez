@@ -15,17 +15,15 @@ function Main() {
             {data.map((each, id)=><Article key={`${Math.random()}`} title={each.title} text={each.text}/>)}
           </div>
 
-            <div className="md:col-span-2 md:col-start-4 text-flex-center">
-                <img src="../public/Cayo de Agua.jpg" className="rounded opacity-60"/>
+            <div className="sm:col-span-2 sm:col-start-4 flex items-center p-3 m-3">
+                <img src="../public/Cayo de Agua.jpg" className="rounded opacity-60 flex items-center p-3 m-3"/>
             </div>
         </section>
 
 
         <section>
 
-    
           <Slide />
-      
 
         </section>
 

@@ -3,22 +3,19 @@ import Main from './components/Main/Index'
 import Layouts from './layouts/Layouts'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Home from './pages/Home';
-import Cities from './pages/Cities/Index'
+import Cities from './pages/Cities'
 import './App.css'
 
 
 const router = createBrowserRouter([
-  {path:'/', element: <Layouts />,
+  {
+    path:'/', 
+    element: <Layouts />,
     children:[
-      {path:'/', element: <Home /> }
-  ]
-},
-
-  {path:'/cities', element: <Layouts />,
-    children:[
+      {path:'/', element: <Home /> },
       {path:'/cities', element: <Cities /> }
-  ]
-},
+    ]
+  },
 
 ])
 

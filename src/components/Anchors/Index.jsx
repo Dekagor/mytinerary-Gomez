@@ -1,10 +1,15 @@
 import React from 'react';
 
-function Anchors ({href, description}) {
+function Anchors ({ className, links }) {
   return (
-    <>
-      <a className="text-center text-xl mr-2 ml-3" href={href}>{description}</a>
-    </>
+    
+    <div className= {className} >
+      {
+        links?.map(link => (
+          <a className="text-center text-xl mr-2 ml-3 mt-5 sm:flex" href={link.href} key={link.id}>{link.title}</a>
+        ) )
+      }
+    </div>
   )
 }
 
