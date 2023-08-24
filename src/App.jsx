@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Main from './components/Main/Index'
 import Layouts from './layouts/Layouts'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Home from './pages/Home';

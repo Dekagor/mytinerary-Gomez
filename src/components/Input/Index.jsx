@@ -143,9 +143,10 @@ const LinksCities = [
 
 const Input = () => {
     const [data, setData] = useState ([]);
-    const [filtered, setFiltered] = useState ([]);
+    const [filtered, setFiltered] = useState (LinksCities);
 
 
+var myRequest = new Request (LinksCities);
 
 //array vacio
     useEffect(() => {
@@ -156,23 +157,28 @@ const Input = () => {
         setFiltered(info.LinksCities)
     });
     }, []);
-console.log(LinksCities);
 
-const handleInput = (e) => {
-    const filtered = LinksCities.filter ( landscapes => 
-        landscapes.name.toLowerCase().includes( e.target.value.toLowerCase()));
-    setData(filtered);
-  };
+    useEffect(() => {
+        handleInput()
+    },[filtered]);
+
+const handleInput = () => {
+    const input= document.getElementById("search").value;
+    const filtered = LinksCities.filter ( landscapes => landscapes.name.toLowerCase().includes(input.toLowerCase()))
+    setFiltered(filtered)
+};
 
 
   return (
     <main>
         <h3>DESTINATIONS</h3>
-        <input type="text" placeholder='find your next destination' onInput={handleInput} />
-
-        <section className= 'container'>
-
-        {LinksCities.map ((each, id) =><Cards key={id} name={each.name} country={each.country} location={each.location} image={each.image} description={each.description} />)}
+        <input type="text" id="search" placeholder='find your next destination' onChange={handleInput} />
+        <section className= 'flex flex-wrap flex-row'>
+        {
+            filtered.map (
+                (each, id)=><Cards key={id} name={each.name} country={each.country} location={each.location} image={each.image} description={each.description} />
+            )
+        }
 
         </section>
     </main>
