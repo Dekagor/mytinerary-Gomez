@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-function Cards ({id, image, name, country, location}) {
+function Cards ({id, image, name, country, location, date, price}) {
 
 
     return (
@@ -15,6 +15,8 @@ function Cards ({id, image, name, country, location}) {
                     <h4 className="text-xl font-semibold text-blue-600">{name}</h4>
                     <p className="mb-2 leading-normal">{country}</p>
                     <p className="mb-2 leading-normal">{location}</p>
+                    <p className="mb-2 leading-normal">{date}</p>
+                    <p className="mb-2 leading-normal">{price}</p>
                     <button className="w-full ml-0 align items-center px-4 py-2 text-sm text-blue-100 bg-zinc-600 rounded shadow">
                         Read more
                     </button>

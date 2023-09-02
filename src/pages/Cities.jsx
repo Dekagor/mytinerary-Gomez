@@ -4,7 +4,6 @@ import Input from '../components/Input/Index';
 
 const Cities = () => {
 
-
   return (
     <>
     <Input />
