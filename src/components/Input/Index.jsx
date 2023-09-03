@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './Style.css'
 import Cards from '../Cards/Index'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
-import { allCities, filteredCities } from '../../store/actions/citiesActions';
-import { getAllCities } from '../../services/cityService';
+import { allCitiesAsync, filteredCitiesAsync } from '../../store/actions/citiesActions';
+ 
 
 const Input = () => {
     const [data, setData] = useState ([]);
-    const [filtered, setFiltered] = useState (URL);
-
-
+    const [filtered, setFiltered] = useState ();
+    const searchBox = useRef();
+    const cities = useSelector((store) => store.cities.filteredCities);
+   console.log(cities);
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-
-        getAllCities().then((cities) => {
-            setData(cities);
-            dispatch(allCities(cities));
-        });
+        dispatch(allCitiesAsync());
     },[]);
 
 
         const handleInput = () => {
-            const search= select.current.value;
+         /*   const search= searchBox.current.value;
             let query = `?`;
             if (search) {
-                query+= "name="+search
+                query+= "name="+ search;
             }
-            getAllCities(query).then(setData);
+            getAllCities(query).then(queryResponse) => {
+                console.log("queryResponse", queryResponse);
+            } ; */
+            dispatch(filteredCitiesAsync(queryResponse.data));
         }
 
 
@@ -216,6 +216,14 @@ const valor = useSelector((store) => store.cities)
 
 var myRequest = new Request (LinksCities);
 
+    useEffect(() => {
+
+        getAllCities().then((cities) => {
+            setData(cities);
+            dispatch(allCities(cities));
+        });
+    },[]);
+
 //array vacio
     useEffect(() => {
         fetch(LinksCities)
@@ -240,20 +248,18 @@ const handleInput = () => {
 
 */
 
-  return (
+return (
     <main>
         <h3>DESTINATIONS</h3>
         <input type="text" id="search" placeholder='find your next destination' onChange={handleInput} />
         <section className= 'flex flex-wrap flex-row'>
-        {
-            filtered.map (
-                (each, id)=><Cards key={id} name={each.name} country={each.country} location={each.location} image={each.image} description={each.description} price={each.price} date={each.date}/>
-            )
-        }
-
+            { cities.map((item) => {
+                <Cards key={item._id} name={item.name} country={item.country} location={item.location} image={item.img} description={item.description} price={item.price} date={item.date}/>
+            } ) }
+            
         </section>
     </main>
-  )
+    )
 }
 
 export default Input;
