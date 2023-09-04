@@ -25,15 +25,28 @@ export const allCitiesAsync = createAsyncThunk('all_Cities_Async', async () => {
 } )
 
 
-export const filteredCities = createAction('filtered_Cities', (filtered) => {
+export const CityAsync = createAsyncThunk('City_Async', async (id) => {
 
-    return{
-        payload: filtered
+    try {
+        const demand = await axios ('http://localhost:3000/api/cities/'+id)
+        return demand.data.response
+    } catch (error) {
+        return []
     }
 } )
 
 
-export const filteredCitiesAsync = createAsyncThunk('filtered_Cities_Async', async () => {
+export const filteredCities = createAction('filtered_Cities', (search) => {
+
+    return{
+        payload: {
+            inputValue : search
+        }
+    }
+} )
+
+
+    /*export const filteredCitiesAsync = createAsyncThunk('filtered_Cities_Async', async () => {
     try {
         const search = await getAllFiltered()
         return search
@@ -46,7 +59,7 @@ export const filteredCitiesAsync = createAsyncThunk('filtered_Cities_Async', asy
 
 
 
-    /* otra forma de usar axios
+ otra forma de usar axios
 
     export const allCitiesAsync = createAsyncThunk('all_Cities_Async', async () => {
     try {

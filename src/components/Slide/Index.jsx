@@ -48,7 +48,7 @@ return (
                 <p>POPULAR MYTINERARIES</p>
             </div>
 
-            <div className="col-span-4 flex place-content-center place-items-center justify-center">
+            <div className="col-span-4 flex place-content-center place-items-center justify-center mb-40 mt-8">
                 <MdChevronLeft onClick={() => prev ()}size={40}/>
                     <div id='slider'>
                         {landscapes.map((landscapes)=>(

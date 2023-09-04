@@ -3,25 +3,25 @@ import './Style.css'
 import Cards from '../Cards/Index'
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
-import { allCitiesAsync, filteredCitiesAsync } from '../../store/actions/citiesActions';
+import { allCitiesAsync, filteredCities} from '../../store/actions/citiesActions';
  
 
 const Input = () => {
     const [data, setData] = useState ([]);
     const [filtered, setFiltered] = useState ();
-    const searchBox = useRef();
-    const cities = useSelector((store) => store.cities.filteredCities);
-   console.log(cities);
+    const inputSearch = useRef();
     const dispatch = useDispatch();
 
 
+    const cities = useSelector((store) => store.cities.filteredCities);
+    console.log(cities);
     useEffect(() => {
         dispatch(allCitiesAsync());
     },[]);
 
 
         const handleInput = () => {
-         /*   const search= searchBox.current.value;
+        /*   const search= inputSearch.current.value;
             let query = `?`;
             if (search) {
                 query+= "name="+ search;
@@ -29,10 +29,25 @@ const Input = () => {
             getAllCities(query).then(queryResponse) => {
                 console.log("queryResponse", queryResponse);
             } ; */
-            dispatch(filteredCitiesAsync(queryResponse.data));
+            dispatch(filteredCities(inputSearch.current.value));
         }
 
 
+        return (
+            <main>
+                <h3 className='mx-10 my-10 mt-28 text-3xl font-black text-gray-600'>DESTINATIONS</h3>
+                <input className="text-sm rounded-lg w-full p-2.5 mb-8" defaultValue={filteredCities} type="text" name= "" id="" placeholder='find your next destination' onInput={handleInput} ref={inputSearch} />
+                <section className= 'flex flex-wrap flex-row'>
+                    { cities.map((item) => (
+                        <Cards key={item._id} name={item.name} country={item.country} location={item.location} image={item.img} description={item.description} price={item.price} date={item.date}/>
+                    ) ) }
+
+                </section>
+            </main>
+            )
+        }
+
+        export default Input;
 
 
 /* const LinksCities = [
@@ -248,18 +263,3 @@ const handleInput = () => {
 
 */
 
-return (
-    <main>
-        <h3>DESTINATIONS</h3>
-        <input type="text" id="search" placeholder='find your next destination' onChange={handleInput} />
-        <section className= 'flex flex-wrap flex-row'>
-            { cities.map((item) => {
-                <Cards key={item._id} name={item.name} country={item.country} location={item.location} image={item.img} description={item.description} price={item.price} date={item.date}/>
-            } ) }
-            
-        </section>
-    </main>
-    )
-}
-
-export default Input;

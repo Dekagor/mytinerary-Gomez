@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { allCities, allCitiesAsync, filteredCities, filteredCitiesAsync } from "../actions/citiesActions";
+import { allCities, allCitiesAsync, filteredCities, CityAsync } from "../actions/citiesActions";
 
 
 const InitialState = {
     allCities: [],
     filteredCities: [],
+    city: null
 }
 
 export const citiesReducer = createReducer(InitialState, ( builder ) =>
@@ -18,9 +19,9 @@ export const citiesReducer = createReducer(InitialState, ( builder ) =>
         }
     })
 
-    .addCase(filteredCities,(state, action) => {
-        const filteredInput = state.allCities.filteredCities(city => city.name.toLowerCase().startsWith(action.payload.inputValue))
-        let newFilteredCities = filteredInput
+    .addCase(filteredCities, (state, action) => {
+        const filteredSearch = state.allCities.filter(city => city.name.toLowerCase().startsWith( action.payload.inputValue ))
+        let newFilteredCities = filteredSearch
         return {
             ...state,
             filteredSearch : newFilteredCities
@@ -37,10 +38,13 @@ export const citiesReducer = createReducer(InitialState, ( builder ) =>
         }
     } )
 
-    .addCase(filteredCitiesAsync.fulfilled, (state, action) => {
+    .addCase(CityAsync.fulfilled, (state, action) => {
         console.log(state);
         console.log(action.payload);
-        return search
+        return {
+            ...state,
+            City : action.payload,
+        }
     } )
 
 )
