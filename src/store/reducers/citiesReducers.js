@@ -5,6 +5,7 @@ import { allCities, allCitiesAsync, filteredCities, CityAsync } from "../actions
 const InitialState = {
     allCities: [],
     filteredCities: [],
+    filteredSearch: [],
     city: null
 }
 
@@ -20,7 +21,8 @@ export const citiesReducer = createReducer(InitialState, ( builder ) =>
     })
 
     .addCase(filteredCities, (state, action) => {
-        const filteredSearch = state.allCities.filter(city => city.name.toLowerCase().startsWith( action.payload.inputValue ))
+        const filteredSearch = state.allCities.filter(city => city.name.toLowerCase().startsWith( action.payload.inputValue)
+        )
         let newFilteredCities = filteredSearch
         return {
             ...state,
@@ -43,7 +45,7 @@ export const citiesReducer = createReducer(InitialState, ( builder ) =>
         console.log(action.payload);
         return {
             ...state,
-            City : action.payload,
+            city : action.payload,
         }
     } )
 

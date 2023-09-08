@@ -1,11 +1,8 @@
 import "./Style"
 import React from 'react'
-
-
+import { Link } from 'react-router-dom'
 
 function Cards ({id, image, name, country, location, date, price}) {
-
-
     return (
         <>
         <div className="flex-basis-1/3 w-1/3 p-2 mb-8">
@@ -17,9 +14,7 @@ function Cards ({id, image, name, country, location, date, price}) {
                     <p className="mb-2 leading-normal">{location}</p>
                     <p className="mb-2 leading-normal">{date}</p>
                     <p className="mb-2 leading-normal">{price}</p>
-                    <button className="w-full ml-0 align items-center px-4 py-2 text-sm text-blue-100 bg-zinc-600 rounded shadow">
-                        Read more
-                    </button>
+                    <Link className="w-full ml-0 align items-center px-4 py-2 text-sm text-blue-100 bg-zinc-600 hover:bg-red-700 ease-in-out rounded shadow" to={`/city/${id}`}>Read more </Link>
                 </div>
             </div>
         </div>

@@ -44,7 +44,7 @@ function Index ({id, img, name, country, location, date1, date2, price1, price2,
     <p className="text-gray-700 text-base">{date2}</p>
     <p className="text-gray-700 text-base">{price2}</p>
     <p className="text-gray-700 text-base">{included2}</p>
-    <p className="text-gray-700 text-base">{notincluded2}</p>
+    <p className="text-gray-700 text-base">{notincluded}</p>
   </div>
   <div className="px-6 pt-4 pb-2">
     <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>

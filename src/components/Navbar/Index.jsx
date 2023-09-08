@@ -10,7 +10,7 @@ function Navbar () {
     return (
       <nav>
         <Anchors className = 'navbar max-w-7xl mx-auto flex items-center justify-evenly border-b' links={LINKSHOME}/>
-        <Login className = 'navbar max-w-7xl mx-auto flex items-center justify-end mr-20 border-b'links={LINKSLOG}/>
+        <Login className = 'navbar max-w-7xl mx-auto flex items-end justify-end mr-20 border-b'links={LINKSLOG}/>
       </nav>
   );
 }

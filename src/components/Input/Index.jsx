@@ -12,36 +12,33 @@ const Input = () => {
     const inputSearch = useRef();
     const dispatch = useDispatch();
 
+    const all_cities = useSelector((store) => store.cities.allCities);
+    const filtered_cities = useSelector((store) => store.cities.filteredSearch);
 
-    const cities = useSelector((store) => store.cities.filteredCities);
-    console.log(cities);
     useEffect(() => {
         dispatch(allCitiesAsync());
     },[]);
 
-
-        const handleInput = () => {
-        /*   const search= inputSearch.current.value;
-            let query = `?`;
-            if (search) {
-                query+= "name="+ search;
-            }
-            getAllCities(query).then(queryResponse) => {
-                console.log("queryResponse", queryResponse);
-            } ; */
-            dispatch(filteredCities(inputSearch.current.value));
-        }
+    const handleInput = () => {
+        dispatch(filteredCities(inputSearch.current.value));
+    }
 
 
         return (
             <main>
                 <h3 className='mx-10 my-10 mt-28 text-3xl font-black text-gray-600'>DESTINATIONS</h3>
-                <input className="text-sm rounded-lg w-full p-2.5 mb-8" defaultValue={filteredCities} type="text" name= "" id="" placeholder='find your next destination' onInput={handleInput} ref={inputSearch} />
+                <input className="text-sm rounded-lg w-full p-2.5 mb-8"  type="text" name= "" id="" placeholder='find your next destination' onInput={handleInput} ref={inputSearch} />
                 <section className= 'flex flex-wrap flex-row'>
-                    { cities.map((item) => (
-                        <Cards key={item._id} name={item.name} country={item.country} location={item.location} image={item.img} description={item.description} price={item.price} date={item.date}/>
-                    ) ) }
-
+                    {
+                        filtered_cities.length === 0 ? 
+                        all_cities.map((item) => (
+                            <Cards key={item._id} id={item._id} name={item.name} country={item.country} location={item.location} image={item.img} description={item.description} price={item.price} date={item.date}/>
+                            ))
+                        :
+                            filtered_cities.map((item) => (
+                                <Cards key={item._id} id={item._id} name={item.name} country={item.country} location={item.location} image={item.img} description={item.description} price={item.price} date={item.date}/>
+                            ))
+                    }
                 </section>
             </main>
             )

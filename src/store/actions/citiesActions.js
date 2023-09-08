@@ -26,10 +26,9 @@ export const allCitiesAsync = createAsyncThunk('all_Cities_Async', async () => {
 
 
 export const CityAsync = createAsyncThunk('City_Async', async (id) => {
-
     try {
-        const demand = await axios ('http://localhost:3000/api/cities/'+id)
-        return demand.data.response
+        const demand = await axios (`http://localhost:3000/api/city/${id}`)
+        return demand.data.city
     } catch (error) {
         return []
     }
